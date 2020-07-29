@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Books
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Books <a class="btn btn-primary m-2" href="{{ path('create') }}">Create new book</a></h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number of pagges</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td><a href="{{ path('show', {id: book.id}) }}">{{ book.name }}</a></td>
+                        <td>{{ book.pages }}</td>
+                        <td>
+                            <a class="btn btn-success" href="{{ path('update', {id: book.id}) }}">Update</a>
+                            <form class="d-inline" action="{{ path('delete', {id: book.id}) }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <input type="submit" value="Delete" class="btn btn-danger" onclick="confirm('Are you sure to delete {{ book.name }}?') || event.preventDefault()">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Update {{ book.name }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Update {{ book.name }}</h1>
+        {{ form(form) }}
+        <a class="btn btn-success form-control"href="{{ path('home') }}" >Back</a>
+    </div>
+{% endblock %}
